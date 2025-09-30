@@ -1,7 +1,7 @@
 
 import unittest
 from unittest.mock import patch
-from emailverify import EmailVerify, EmailVerifyAPIException, EmailVerifyClientException
+from emailverifysdk import EmailVerify, EmailVerifyAPIException, EmailVerifyClientException
 
 class MockResponse:
     def __init__(self, json_data=None, status_code=200):
@@ -16,7 +16,7 @@ class BaseTestCase(unittest.TestCase):
 
 class EmailVerifyTestCase(BaseTestCase):
 
-    @patch("emailverify.emailverify.requests.Session.request")
+    @patch("emailverifysdk.emailverifysdk.requests.Session.request")
     def test_check_balance_valid(self, mock_request):
         mock_request.return_value = MockResponse({
             "api_status": "enabled",
@@ -26,7 +26,7 @@ class EmailVerifyTestCase(BaseTestCase):
         self.assertEqual(response.api_status, "enabled")
         self.assertEqual(response.remaining_credits, 1000)
 
-    @patch("emailverify.emailverify.requests.Session.request")
+    @patch("emailverifysdk.emailverifysdk.requests.Session.request")
     def test_check_balance_error(self, mock_request):
         mock_request.return_value = MockResponse({
             "error": "Invalid API key"
@@ -35,7 +35,7 @@ class EmailVerifyTestCase(BaseTestCase):
             self.client.check_balance()
         self.assertIn("Invalid API key", str(cm.exception))
 
-    @patch("emailverify.emailverify.requests.Session.request")
+    @patch("emailverifysdk.emailverifysdk.requests.Session.request")
     def test_validate_valid(self, mock_request):
         mock_request.return_value = MockResponse({
             "email": "test@example.com",
@@ -45,7 +45,7 @@ class EmailVerifyTestCase(BaseTestCase):
         self.assertEqual(response.email, "test@example.com")
         self.assertEqual(response.status, "valid")
 
-    @patch("emailverify.emailverify.requests.Session.request")
+    @patch("emailverifysdk.emailverifysdk.requests.Session.request")
     def test_validate_batch_valid(self, mock_request):
         mock_request.return_value = MockResponse({
             "status": "queued",
@@ -60,7 +60,7 @@ class EmailVerifyTestCase(BaseTestCase):
         self.assertEqual(response.status, "queued")
         self.assertEqual(response.task_id, 123)
 
-    @patch("emailverify.emailverify.requests.Session.request")
+    @patch("emailverifysdk.emailverifysdk.requests.Session.request")
     def test_validate_batch_error(self, mock_request):
         mock_request.return_value = MockResponse({
             "error": "Batch validation failed"
@@ -70,7 +70,7 @@ class EmailVerifyTestCase(BaseTestCase):
             self.client.validate_batch(emails, title="Test Batch")
         self.assertIn("Batch validation failed", str(cm.exception))
 
-    @patch("emailverify.emailverify.requests.Session.request")
+    @patch("emailverifysdk.emailverifysdk.requests.Session.request")
     def test_get_batch_result_valid(self, mock_request):
         mock_request.return_value = MockResponse({
             "task_id": 123,
@@ -91,7 +91,7 @@ class EmailVerifyTestCase(BaseTestCase):
         self.assertEqual(response.count_total, 2)
         self.assertTrue(hasattr(response, "results"))
 
-    @patch("emailverify.emailverify.requests.Session.request")
+    @patch("emailverifysdk.emailverifysdk.requests.Session.request")
     def test_find_email_valid(self, mock_request):
         mock_request.return_value = MockResponse({
             "email": "john.doe@example.com",
@@ -101,7 +101,7 @@ class EmailVerifyTestCase(BaseTestCase):
         self.assertEqual(response.email, "john.doe@example.com")
         self.assertEqual(response.status, "found")
 
-    @patch("emailverify.emailverify.requests.Session.request")
+    @patch("emailverifysdk.emailverifysdk.requests.Session.request")
     def test_find_email_not_found(self, mock_request):
         mock_request.return_value = MockResponse({
             "email": None,

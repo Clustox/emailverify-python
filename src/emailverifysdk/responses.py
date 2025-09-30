@@ -11,7 +11,6 @@ class BaseResponse:
     def __str__(self) -> str:
             return str(self.__class__.__name__) + "=" + str(self.__dict__)
 
-    
 class ValidateResponse(BaseResponse):
     """Response for single email validation."""
 

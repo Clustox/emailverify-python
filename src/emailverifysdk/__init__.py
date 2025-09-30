@@ -5,7 +5,7 @@ This package provides a comprehensive Python interface for the EmailVerify.io
 email validation service, offering single email validation, bulk validation and single finder capabilities
 
 Example usage:
-    from emailverify import EmailVerify
+    from emailverifysdk import EmailVerify
     
     # Initialize the client
     email_verify = EmailVerify("<YOUR_API_KEY>")
@@ -36,7 +36,7 @@ __author__ = "EmailVerify"
 __description__ = "Python SDK for EmailVerify.io API - Email Verification made simple"
 
 # Import main client class
-from .emailverify import EmailVerify
+from .emailverifysdk import EmailVerify
 
 # Import all response classes
 from .responses import (

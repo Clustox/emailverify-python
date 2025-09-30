@@ -13,14 +13,14 @@ Official Python SDK for [EmailVerify.io](https://app.emailverify.io) - A compreh
 
 ## INSTALLATION
 ```bash
-pip install emailverify
+pip install emailverifysdk
 ```
 
 ## USAGE
 Import the sdk in your file:
 
 ```python
-from emailverify import EmailVerify
+from emailverifysdk import EmailVerify
 ```
 
 Initialize the sdk with your api key:
@@ -34,7 +34,7 @@ Then you can use any of the SDK methods, for example:
 
 * ##### Check how many credits you have left on your account
 ```python
-from emailverify import EmailVerify, EmailVerifyException
+from emailverifysdk import EmailVerify, EmailVerifyException
 
 try:
     email_verify = EmailVerify("<YOUR_API_KEY>")
@@ -68,7 +68,7 @@ BalanceResponse = {
 
 * ##### Validate an email address
 ```python
-from emailverify import EmailVerify, EmailVerifyException
+from emailverifysdk import EmailVerify, EmailVerifyException
 
 try:
     email_verify = EmailVerify("<YOUR_API_KEY>")
@@ -110,7 +110,7 @@ Sub Status can be any of the following:
 
 * ##### Batch Validation
 ```python
-from emailverify import EmailVerify, EmailVerifyException
+from emailverifysdk import EmailVerify, EmailVerifyException
 
 try:
     email_verify = EmailVerify("<YOUR_API_KEY>")
@@ -135,7 +135,7 @@ BatchValidateResponse= {
 
 * ##### Get Batch Validation Result
 ```python
-from emailverify import EmailVerify, EmailVerifyException
+from emailverifysdk import EmailVerify, EmailVerifyException
 
 task_id = 1 #TASK_ID must be your task_id received in bulk validation api
 
@@ -192,7 +192,7 @@ BatchResultResponse = {
 
 * ##### Email Finder
 ```python
-from emailverify import EmailVerify, EmailVerifyException
+from emailverifysdk import EmailVerify, EmailVerifyException
 
 try:
     email_verify = EmailVerify("<YOUR_API_KEY>")
@@ -228,7 +228,7 @@ The EmailVerify SDK raises custom exceptions for API errors, invalid input, and 
 
 ### Example Usage
 ```python
-from emailverify import EmailVerify, EmailVerifyAPIException, EmailVerifyClientException
+from emailverifysdk import EmailVerify, EmailVerifyAPIException, EmailVerifyClientException
 
 email_verify = EmailVerify("<YOUR_API_KEY>")
 try:
@@ -245,6 +245,9 @@ except Exception as e:
 ### Accessing Error Details
 If an EmailVerifyAPIException is raised, you can access additional details:
 ```python
+from emailverifysdk import EmailVerify, EmailVerifyAPIException
+
+email_verify = EmailVerify("<YOUR_API_KEY>")
 try:
     response = email_verify.validate("email@example.com")
 except EmailVerifyAPIException as e:
@@ -257,6 +260,10 @@ except EmailVerifyAPIException as e:
 ## Context Manager Usage
 
 ```python
+from emailverifysdk import EmailVerify
+
+email_verify = EmailVerify("<YOUR_API_KEY>")
+
 with EmailVerify("<YOUR_API_KEY>") as email_verify:
     response = email_verify.validate("test@example.com")
     print(str(response))

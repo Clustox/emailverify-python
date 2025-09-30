@@ -22,7 +22,6 @@ from .responses import (
     FinderResponse
 )
 
-
 class EmailVerify:
     """
     EmailVerify.io SDK client.
