@@ -1,15 +1,40 @@
-## Email Verify Python SDK
-This SDK contains methods for interacting easily with Email Verify API.
-More information about EmailVerify you can find in the [official webiste](https://www.emailverify.io/).
+# EmailVerify.io Python SDK [![Get API Key](https://img.shields.io/badge/Get-API%20Key-blue)](https://emailverify.io)
 
-Official Python SDK for [EmailVerify.io](https://app.emailverify.io) - A comprehensive email verification service.
+🚀 Official Python client for EmailVerify.io — fast and accurate email verification API.
 
+- Validate emails in real-time
+- Detect disposable & risky emails
+- Run bulk verification
+- Find professional email addresses
+
+👉 Get free API key: https://emailverify.io
+
+## Why EmailVerify.io?
+
+- ⚡ Sub-second API response
+- 🎯 High accuracy (SMTP-level verification)
+- 💰 Cost-effective vs competitors
+- 🔌 Easy integration across Python, PHP, Go, Ruby, .NET
+  
 ## Features
 
 - ✅ **Single Email Validation** - Validate individual email addresses
 - 💰 **Account Balance Checking** - Monitor your credits and API status
 - 📦 **Batch Validation** - Process up to 5,000 emails at once
 - 🔍 **Email Finder** - Find email addresses by name and domain
+
+## Quick Start
+```python
+from emailverify import EmailVerify
+
+# Initialize
+client = EmailVerify(api_key="your-api-key")
+
+# Validate email
+result = client.validate("test@example.com")
+
+print(result["status"])
+```
 
 ## INSTALLATION
 ```bash
